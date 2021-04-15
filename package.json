@@ -1,0 +1,17 @@
+{
+  "name": "@lilonghe/toast",
+  "version": "1.0.0",
+  "description": "simple use of toast.show(text)",
+  "main": "toast.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lilonghe/toast.js.git"
+  },
+  "keywords": ["toast"],
+  "author": "lilonghe <lilonghe@outlook.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lilonghe/toast.js/issues"
+  },
+  "homepage": "https://github.com/lilonghe/toast.js#readme"
+}

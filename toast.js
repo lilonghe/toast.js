@@ -1,7 +1,7 @@
 function Toast() {
     this.options = {
         maskStyle: {},
-        contentStyle: {
+        style: {
             padding: '8px 15px',
             backgroundColor: 'rgba(0,0,0,.8)',
             position: 'fixed',
@@ -18,7 +18,7 @@ function Toast() {
     };
 
     this.config = function (options) {
-        // const { maskStyle={}, contentStyle={}, className, maskClassName, duration, targetElement } = options;
+        // const { maskStyle={}, style={}, className, maskClassName, duration, targetElement } = options;
         if (options.className != undefined) {
             this.options.className = options.className;
         }
@@ -30,6 +30,16 @@ function Toast() {
         }
         if (options.targetElement) {
             this.options.targetElement = options.targetElement;
+        }
+        if (options.maskStyle) {
+            Object.keys(options.maskStyle).map(key => {
+                this.options.maskStyle[key] = options.maskStyle[key];
+            });
+        }
+        if (options.style) {
+            Object.keys(options.style).map(key => {
+                this.options.style[key] = options.style[key];
+            });
         }
     }
 
@@ -51,9 +61,9 @@ function Toast() {
                 oldOptions.maskStyle[key] = newOptions.maskStyle[key];
             });
         }
-        if (newOptions.contentStyle) {
-            Object.keys(newOptions.contentStyle).map(key => {
-                oldOptions.contentStyle[key] = newOptions.contentStyle[key];
+        if (newOptions.style) {
+            Object.keys(newOptions.style).map(key => {
+                oldOptions.style[key] = newOptions.style[key];
             });
         }
         return oldOptions;
@@ -79,8 +89,8 @@ function Toast() {
                 current.maskDiv.maskClassName = options.maskClassName;
             }
 
-            Object.keys(options.contentStyle).map(key => {
-                current.contentDiv.style[key] = options.contentStyle[key];
+            Object.keys(options.style).map(key => {
+                current.contentDiv.style[key] = options.style[key];
             });
             if (options.className != undefined) {
                 current.contentDiv.className = options.className;
@@ -96,8 +106,8 @@ function Toast() {
                 current.maskDiv.maskClassName = options.maskClassName;
             }
 
-            Object.keys(options.contentStyle).map(key => {
-                current.contentDiv.style[key] = options.contentStyle[key];
+            Object.keys(options.style).map(key => {
+                current.contentDiv.style[key] = options.style[key];
             });
             if (options.className != undefined) {
                 current.contentDiv.className = options.className;
