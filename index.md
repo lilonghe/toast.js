@@ -1,37 +1,42 @@
-## Welcome to GitHub Pages
+# Intro
+Github 找了几页一个小小的 toast 组件都木有，全是基于 React 或者 Vue，就写个自己用吧，没有任何外部依赖。
 
-You can use the [editor on GitHub](https://github.com/lilonghe/toast.js/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+需求很简单，弹出提示，弹出加载提示（有遮罩），可以自动或手动移除掉，不需要外部依赖，目前加载后自动注册到 window 上。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+# Install
+```
+npm install @lilonghe/toast
+```
+```
+import '@lilonghe/toast';
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+# Methods
 
-### Jekyll Themes
+## config
+全局配置  
+```
+toast.config({
+    style: {},
+    maskStyle: {},
+    className: '',
+    maskClassName: '',
+    duration: 2000,
+    targetElement: 'body',
+});
+```
+## show
+```
+toast.show(text, [options]);
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lilonghe/toast.js/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## loading
+```
+toast.loading([text=loading]);
+```
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### remove
+```
+let loading = toast.loading([text=loading]);
+loading.remove();
+```
