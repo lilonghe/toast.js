@@ -3,7 +3,7 @@ function Toast() {
         maskStyle: {},
         contentStyle: {
             padding: '8px 15px',
-            backgroundColor: 'rgba(0,0,0,.6)',
+            backgroundColor: 'rgba(0,0,0,.8)',
             position: 'fixed',
             color: '#FFF',
             borderRadius: '2px',
@@ -46,19 +46,30 @@ function Toast() {
         if (newOptions.targetElement) {
             oldOptions.targetElement = newOptions.targetElement;
         }
+        if (newOptions.maskStyle) {
+            Object.keys(newOptions.maskStyle).map(key => {
+                oldOptions.maskStyle[key] = newOptions.maskStyle[key];
+            });
+        }
+        if (newOptions.contentStyle) {
+            Object.keys(newOptions.contentStyle).map(key => {
+                oldOptions.contentStyle[key] = newOptions.contentStyle[key];
+            });
+        }
         return oldOptions;
     }
 
     this.show = function (text, newOptions) {
-        var options = newOptions ? this.mergeOptions(Object.assign(this.options, {}), newOptions) : this.options;
+        var options = newOptions ? this.mergeOptions(JSON.parse(JSON.stringify(this.options)), newOptions) : this.options;
         let current = {};
 
-        if (!current.maskDiv) {
+        // if (!current.maskDiv) {
             current.maskDiv = document.createElement('div');
-            if (!current.contentDiv) {
+            current.maskDiv.setAttribute('data-key', Math.random().toFixed(5)+new Date().getTime());
+            // if (!current.contentDiv) {
                 current.contentDiv = document.createElement('div');
                 current.maskDiv.appendChild(current.contentDiv);
-            }
+            // }
 
             //  使用全局配置
             Object.keys(options.maskStyle).map(key => {
@@ -74,7 +85,7 @@ function Toast() {
             if (options.className != undefined) {
                 current.contentDiv.className = options.className;
             }
-        }
+        // }
 
         // 使用本次配置
         if (newOptions) {
@@ -117,6 +128,20 @@ function Toast() {
 
 
         return current.contentDiv;
+    }
+
+    this.loading = function(text) {
+        return this.show(text || "loading", {
+            maskStyle: {
+                backgroundColor: 'rgba(0,0,0,.1)',
+                position: 'fixed',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
+            },
+            duration: 0,
+        })
     }
 }
 

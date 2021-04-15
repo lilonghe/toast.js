@@ -5,13 +5,58 @@
 		.user-toast {
 			font-size: 16px;
 		}
+		form {
+			margin-top: 40%;
+			font-size: 16px;
+		}
+		form > div {
+			margin-bottom: 20px;
+		}
+		form input,button {
+			width: 100%;
+			padding: 20px 10px;
+			border: 1px solid rgba(0,0,0,0.8);
+			outline: none;
+		}
+		form input[type='button'] {
+			background-color: rgba(0,0,0,0.8);
+			color: #FFF;
+			border: none;
+		}
 	</style>
 	<script src="./toast.js"></script>
 </head>
 <body>
+	<form name="login">
+		<div>
+			<input name="username" placeholder="Please input username." />
+		</div>
+		<div>
+			<input name="password" type="password"  placeholder="Please input password."/>
+		</div>
+		<div>
+			<button name="submit" type="button">Submit</button>
+		</div>
+	</form>
+
 	<script>
-		toast.config({  className: "user-toast" });
-		const message = window.toast.show("asaasasa");
+		// toast.config({  className: "user-toast", duration: 99999 });
+		document.forms.login.submit.onclick = function submit(e) {
+			e.preventDefault();
+			console.log('login')
+			let username = document.forms.login.username;
+			let password = document.forms.login.password;
+			if (!username.value || !password.value) {
+				toast.show('未输入用户名或密码');
+				return;
+			}
+			let loading = toast.loading();
+
+			setTimeout(() => {
+				loading.remove();
+				toast.show('login faild');
+			}, 3000);
+		}
 	</script>
 </body>
 </html>
