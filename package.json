@@ -1,6 +1,6 @@
 {
   "name": "@lilonghe/toast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "simple use of toast.show(text)",
   "main": "toast.js",
   "repository": {
